@@ -1,32 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+import Table from "../table/Table";
 import "./card.css"
 
-const Card = () => {
+const Card = ({name, rating, SntoreImage, website, establishmentDate,}) => {
 
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    const fetchLocation = async () => {
-      await fetch("http://localhost:3000/stores")
-      .then((res) => res.json())
-      .then((data) => { 
-        setData(data);
-        console.log(data);
-      });
-
-    };
-    fetchLocation();
-  }, []);
-
-  if(!data.length) return <div>Loading...</div>
-
+ 
   return (
     <div className="card-container">
-        <div>
-        
-        </div>
-        
-
-        </div>
+          <img src={''} alt="" className="img-container" />
+       
+      <div className="card-content">
+        <div className="card-title"></div>
+        <Table></Table>
+      </div>
+      
+       </div>
   )
 }
 
