@@ -1,0 +1,9 @@
+.star-container {
+   display: flex;
+   justify-content: right;
+}
+
+.star {
+    width: 20px;
+    height: 20px;
+}

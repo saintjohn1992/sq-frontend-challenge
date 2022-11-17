@@ -1,17 +1,18 @@
-import React from 'react'
+import CardList from '../cardlist/CardList';
+import Rating from '../rating/Rating';
 import Table from "../table/Table";
 import "./card.css"
 
-const Card = ({name, rating, SntoreImage, website, establishmentDate,}) => {
+const Card = ({name, img, rating, website, flag, bk1, bk2, a1, a2}) => {
 
- 
   return (
     <div className="card-container">
-          <img src={''} alt="" className="img-container" />
-       
+          <img src={img} alt="" className="img-container" />
+          <Rating rating={rating}/>
       <div className="card-content">
-        <div className="card-title"></div>
+        <p className="card-title">{name}</p>
         <Table></Table>
+        <p>{website}</p>
       </div>
       
        </div>

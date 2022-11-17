@@ -5,6 +5,9 @@
     transition: 0.3s;
     animation: ease-in;
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
 }
 
 .card-container:hover {
@@ -16,4 +19,9 @@
     overflow: hidden;
     height: 200px;
     
+}
+
+.card-content {
+    margin: 1rem;
+    margin-top: 0.5rem;
 }

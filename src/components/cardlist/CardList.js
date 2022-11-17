@@ -4,22 +4,33 @@ import Card from "../card/Card";
 
 const CardList = () => {
 
-  const [data, setData] = useState()
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/stores")
-  .then((response) => response.json())
-  .then((data) => {
-    setData(data)
-    console.log(data.data)
-  });
-
+    const fetchLocation = async () => {
+      await fetch("http://localhost:3000/stores")
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data.data);
+        console.log(data)
+      });
+    };
+    fetchLocation()
   }, []);
- 
+  
+  if(!data.length) return <div>Loading...</div>
+
   return (
-    <div className="list">
-   
-    </div>
+   <div>
+    {data.sort((a,b) =>  { return b.attributes.rating - a.attributes.rating}).map((data) => (
+       <Card
+       key={data.id} 
+       name={data.attributes.name}
+       img={data.attributes.storeImage}
+       rating={data.attributes.rating}
+       />
+    ))}
+   </div>
   )
 }
 
