@@ -9,19 +9,16 @@ import './rating.css';
 
 
     const arr = Array.from(
-        {length: rate},
+        {length: 5},
         (_, index) => index + 1
       );
 
-      const empty = Array.from(
-        {length: 5 - rate},
-        (_, index) => index + 1
-      );
+     
             
   return (
     <div className='star-container'>
-        {arr.map(()=> <img src={Star} alt="star" className='star' />)}
-        {empty.map(()=> <img src={Empty} alt="star" className='star' />)}
+        {arr.map((index)=> <img key={index} src= {index <= rate ? Star : Empty} onClick={()=> setRate(index)} alt="star" className='star' />)}
+
     </div>
   )
 }

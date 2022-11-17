@@ -1,6 +1,7 @@
 import "./cardlist.css"
 import React, { useEffect, useState } from 'react'
 import Card from "../card/Card";
+import moment from "moment/moment";
 
 const CardList = () => {
 
@@ -28,6 +29,8 @@ const CardList = () => {
        name={data.attributes.name}
        img={data.attributes.storeImage}
        rating={data.attributes.rating}
+       website={data.attributes.website}
+       date={moment(data.attributes.establishmentDate, "YYYY-MM-DD").format("DD.MM.YYYY")}
        />
     ))}
    </div>
