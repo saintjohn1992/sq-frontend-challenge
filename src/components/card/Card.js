@@ -12,8 +12,8 @@ const Card = ({name, img, rating, website, date, flag, bk1, bk2, a1, a2}) => {
       <div className="card-content">
         <p className="card-title">{name}</p>
         <Table></Table>
-        <p>{website}</p>
-        <p>{date}</p>
+        <p className='website'>-{website}</p>
+        <p className='date'>{date}</p>
       </div>
       
        </div>
