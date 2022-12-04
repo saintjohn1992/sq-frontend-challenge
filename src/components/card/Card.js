@@ -1,25 +1,47 @@
-import { useEffect } from 'react';
-import CardList from '../cardlist/CardList';
+import { useEffect, useState } from 'react';
 import Rating from '../rating/Rating';
 import Table from "../table/Table";
 import "./card.css"
 
-const Card = ({name, img, rating, website, date, flag, data, authors, includes}) => {
+const Card = ({name, img, rating, website, date, flag, dataShop, authors, includes, fetchedData, fetchedIncludes, includesCountries}) => {
 
-  let books = [];
+  const [books, setBooks] = useState([])
+  const [countries, setCountries] = useState("");
 
   const creatingBooks = () => {
-    if(data.relationships.books){
-      data.relationships.books.data.map((item, index) => {
-       books.push({
-        id: item.id,
-        name: includes.filter(element => element.id === item.id)[0].attributes.name,
-        authors: authors.filter(element => element.id === includes.filter(element => element.id === item.id)[0].relationships.author.data.id)[0].attributes.fullName
-       })
-      })
-      books.sort()
+    if(dataShop.relationships.books !== undefined){
+        dataShop.relationships.books.data.map((book, index) => {
+          setBooks(books => [...books, {
+           name: includes.filter(element => element.id === book.id)[0].attributes.name,
+           authors: authors.filter(element => element.id === includes.filter(element => element.id === book.id)[0].relationships.author.data.id)[0].attributes.fullName,
+           copiesSold: includes.filter(element => element.id === book.id)[0].attributes.copiesSold
+          }])
+         })
+      books.sort((a , b) => b.copiesSold - a.copiesSold)
     }
   }
+
+  const findingCountries = async () => {
+
+    console.log('here test', includesCountries, dataShop.id)
+    let countriesFilter = await includesCountries.filter(element => element.id === dataShop.relationships.countries.data.id)
+    console.log('here result', countriesFilter)
+    if(countriesFilter[0] !== undefined){
+      fetch(`https://restcountries.com/v3.1/alpha/${countriesFilter[0].attributes.code}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setCountries(data[0].flags.png);
+      })
+    }
+  }
+
+  useEffect(() => {
+    findingCountries()
+  }, [])
+
+  useEffect(() => {
+    creatingBooks()
+  }, [])
 
   return (
     <div className="card-container">
@@ -27,15 +49,22 @@ const Card = ({name, img, rating, website, date, flag, data, authors, includes})
           <Rating rating={rating}/>
       <div className="card-content">
         <p className="card-title">{name}</p>
-        <Table />
+        { books.length ?
+          <Table haveBook={true} books={books}/>
+          :
+          <Table haveBook={false} />
+        }
         <p></p>
         <p className='website'>-{website}</p>
         <p className='date'>{date}</p>
         <img src={flag} alt="flag" className="flag" />
+        <button onClick={() => console.log(countries)}>TEST</button>
+        { countries !== "" &&
+          <img className='image-flag' src={countries} alt="img" />
+        }
+      
       </div>
-      <button onClick={() => creatingBooks()}>RUN THE FUNCTION</button>
-      <button onClick={() => console.log(books)}>TEST THE FUNCTION AGAIN</button>
-       </div>
+    </div>
   )
 }
 

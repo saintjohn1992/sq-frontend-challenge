@@ -17,7 +17,7 @@ import './rating.css';
             
   return (
     <div className='star-container'>
-        {arr.map((index)=> <img key={index} src= {index <= rate ? Star : Empty} onClick={()=> setRate(index)} alt="star" className='star' />)}
+        {arr.map((index)=> <img key={index} src={index <= rate ? Star : Empty} onClick={()=> setRate(index)} alt="star" className='star' />)}
 
     </div>
   )
