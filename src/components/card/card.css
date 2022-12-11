@@ -10,6 +10,12 @@
     display: flex;
     flex-direction: column;
     margin: 20px;
+    border-radius: 10px;
+}
+
+.t-title {
+    font-weight: 600;
+    
 }
 
 .card-container:hover {
@@ -33,6 +39,14 @@
     position: absolute;
     margin-left: 20px;
     margin-top: 20px;  
+}
+
+.image-flag {
+    position: absolute;
+    height: 25px;
+    width: 40px;
+    bottom: 10px;
+    right: 20px;
 }
 
 .card-content {

@@ -46,9 +46,10 @@ const Card = ({name, img, rating, website, date, flag, dataShop, authors, includ
   return (
     <div className="card-container">
           <img src={img} alt="store" className="img-container" />
-          <Rating rating={rating}/>
+          <Rating rating={rating} dataShop={dataShop}/>
       <div className="card-content">
         <p className="card-title">{name}</p>
+        <p className='t-title'>Best-selling books</p>
         { books.length ?
           <Table haveBook={true} books={books}/>
           :
@@ -57,8 +58,6 @@ const Card = ({name, img, rating, website, date, flag, dataShop, authors, includ
         <p></p>
         <p className='website'>-{website}</p>
         <p className='date'>{date}</p>
-        <img src={flag} alt="flag" className="flag" />
-        <button onClick={() => console.log(countries)}>TEST</button>
         { countries !== "" &&
           <img className='image-flag' src={countries} alt="img" />
         }

@@ -33,7 +33,7 @@ const CardList = () => {
 
   return (
    <div>
-    <button onClick={() => console.log(data, includes)}>TEST THE DATAS</button>
+    
     { data.length ?
         includes.length ?
           data.sort((a,b) => {return b.attributes.rating - a.attributes.rating}).map((dataShop) => (
