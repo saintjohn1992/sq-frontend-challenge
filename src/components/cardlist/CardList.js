@@ -42,7 +42,7 @@ const CardList = () => {
               name={dataShop.attributes.name}
               img={dataShop.attributes.storeImage}
               rating={dataShop.attributes.rating}
-              website={dataShop.attributes.website}
+              website={dataShop.attributes.website.replace(/^https?:\/\//, '')}
               date={moment(dataShop.attributes.establishmentDate, "YYYY-MM-DD").format("DD.MM.YYYY")}
               dataShop={dataShop}
               includes={includes.filter(element => element.type === 'books').sort((a , b) => b.attributes.copiesSold - a.attributes.copiesSold)}

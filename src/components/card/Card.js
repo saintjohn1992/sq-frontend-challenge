@@ -56,7 +56,7 @@ const Card = ({name, img, rating, website, date, flag, dataShop, authors, includ
           <Table haveBook={false} />
         }
         <p></p>
-        <p className='website'>-{website}</p>
+        <p className='website'>- {website}</p>
         <p className='date'>{date}</p>
         { countries !== "" &&
           <img className='image-flag' src={countries} alt="img" />
