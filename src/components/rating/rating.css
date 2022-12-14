@@ -13,11 +13,7 @@
 @media screen and (max-width:480px) {
     .star-container {
         display: flex;
-        position: absolute;
-        right: 90px;
-        top: 170px;
-        justify-content: right;
-        margin: 30px 20px 0px 0px;
+        margin: 200px;
      }
      
   

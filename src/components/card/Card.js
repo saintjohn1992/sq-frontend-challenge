@@ -46,9 +46,10 @@ const Card = ({name, img, rating, website, date, flag, dataShop, authors, includ
   return (
     <div className="card-container">
           <img src={img} alt="store" className="img-container" />
-          <Rating rating={rating} dataShop={dataShop}/>
+        
       <div className="card-content">
         <p className="card-title">{name}</p>
+        <Rating rating={rating} dataShop={dataShop}/>
         <p className='t-title'>Best-selling books</p>
         { books.length ?
           <Table haveBook={true} books={books}/>
